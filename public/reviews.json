@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Robert Downey Jr",
+        "reviews": "OMG!!! Today I bought Canon EOS 6D Mark II from this website. I like this website because they sell 100% authentic products. I would like to give this website 5 more stars. I am very happy with my product.",
+        "ratings": 5
+    },
+    {
+        "id": 2,
+        "name": "Johnny Depp",
+        "reviews": "WoW!!! Just bought Nikon D850 from this website. I like this website. This is a good website. They sell new products. I am  happy with my product. This is a good website.",
+        "ratings": 4.5
+    },
+    {
+        "id": 3,
+        "name": "Keanu Reeves",
+        "reviews": "I bought Panasonic Lumix G85 from this website. This is a best website. They sell authentic products. I am very happy with my product. I like this website. Best Wish !!!",
+        "ratings": 4
+    },
+    {
+        "id": 4,
+        "name": "Leonardo DiCaprio",
+        "reviews": "I bought Nikon D850 from this website. I like this website. This is a good website. They sell new products. I am happy with my product. This is a good website. Best Wish !!!",
+        "ratings": 4.5
+    },
+    {
+        "id": 5,
+        "name": "Tom Cruise",
+        "reviews": "I bought Sony Alpha A7 III from this website. I like this website. This is a good website. They sell new products. I am very happy with my product. Thank you Camera Zone",
+        "ratings": 5
+    },
+    {
+        "id": 6,
+        "name": "Hugh Jackman",
+        "reviews": "I bought Sony Alpha A6400 from this website. I like this website. This is a good website. They sell new products. I am happy with my product. This is a good website. Keep Rocking!!!",
+        "ratings": 4.5
+    }
+]

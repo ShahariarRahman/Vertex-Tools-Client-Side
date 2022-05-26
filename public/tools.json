@@ -1,0 +1,82 @@
+[
+    {
+        "toolName": "Hammer-1",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 10,
+        "availableQuantity": 300,
+        "pricePerUnit": 10
+    },
+    {
+        "toolName": "Hammer-2",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 15,
+        "availableQuantity": 250,
+        "pricePerUnit": 12
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 30,
+        "availableQuantity": 330,
+        "pricePerUnit": 14
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 10,
+        "availableQuantity": 400,
+        "pricePerUnit": 11
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 20,
+        "availableQuantity": 370,
+        "pricePerUnit": 17
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 10,
+        "availableQuantity": 230,
+        "pricePerUnit": 13
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 25,
+        "availableQuantity": 230,
+        "pricePerUnit": 18
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 20,
+        "availableQuantity": 120,
+        "pricePerUnit": 12
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 15,
+        "availableQuantity": 320,
+        "pricePerUnit": 16
+    },
+    {
+        "toolName": "Hammer",
+        "toolImage": "https://media.theeverygirl.com/wp-content/uploads/2018/10/tools-every-woman-needs-the-everygirl-2.jpg",
+        "shortDescription": "best for household work",
+        "minimumOrderQuantity": 10,
+        "availableQuantity": 280,
+        "pricePerUnit": 19
+    }
+]
