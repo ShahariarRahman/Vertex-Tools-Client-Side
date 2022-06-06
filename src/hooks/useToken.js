@@ -5,9 +5,10 @@ const useToken = (user) => {
 
     useEffect(() => {
         const email = user?.user?.email;
+        const name = user?.user?.displayName;
         const currentUser = {
             email,
-            role: 'customer'
+            name,
         }
         if (email) {
             const url = `https://vertex-tools.herokuapp.com/user/${email}`;

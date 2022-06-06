@@ -22,13 +22,15 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Payment from './Pages/Dashboard/Payment';
 import NotFound from './Pages/Shared/NotFound';
+import RequireAdmin from './Pages/Login/RequireAdmin';
+import RequireCustomer from './Pages/Login/RequireCustomer';
 
 function App() {
   const [displayName, setDisplayName] = useState('');
   return (
     <div>
       <Header displayName={displayName}></Header>
-      <div className='max-w-screen-2xl min-h-screen  mx-auto'>
+      <div className='max-w-screen-2xl min-h-screen mx-auto z-1'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -36,17 +38,22 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/myPortfolio" element={<MyPortfolio />} />
           <Route path="/signup" element={<SignUp setDisplayName={setDisplayName} />} />
-          <Route path="/purchase/:id" element={<RequireAuth><Purchase /></RequireAuth>} />
+
+          <Route path="/purchase/:id" element={<RequireAuth><RequireCustomer><Purchase /></RequireCustomer></RequireAuth>} />
 
           <Route path="dashboard" element={<RequireAuth> <Dashboard /> </RequireAuth>}>
+
             <Route path="myprofile" element={<MyProfile />}></Route>
-            <Route path="manageOrders" element={<ManageOrders />}></Route>
-            <Route path="addProduct" element={<AddProduct />}></Route>
-            <Route path="makeAdmin" element={<MakeAdmin />}></Route>
-            <Route path="manageProducts" element={<ManageProducts />}></Route>
-            <Route path="addReview" element={<AddReview />}></Route>
-            <Route path="myOrders" element={<MyOrders />}></Route>
-            <Route path="payment/:id" element={<Payment />}></Route>
+
+            <Route path="addReview" element={<RequireCustomer><AddReview /></RequireCustomer>}></Route>
+            <Route path="myOrders" element={<RequireCustomer><MyOrders /></RequireCustomer>}></Route>
+            <Route path="payment/:id" element={<RequireCustomer><Payment /></RequireCustomer>}></Route>
+
+            <Route path="addProduct" element={<RequireAdmin><AddProduct /></RequireAdmin>}></Route>
+            <Route path="makeAdmin" element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
+            <Route path="manageOrders" element={<RequireAdmin><ManageOrders /></RequireAdmin>}></Route>
+            <Route path="manageProducts" element={<RequireAdmin><ManageProducts /></RequireAdmin>}></Route>
+
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

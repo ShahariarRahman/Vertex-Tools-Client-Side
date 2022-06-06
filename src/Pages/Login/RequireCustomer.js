@@ -5,7 +5,7 @@ import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 import Loading from '../Shared/Loading';
 
-const RequireAdmin = ({ children }) => {
+const RequireCustomer = ({ children }) => {
     const [user, loading] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
 
@@ -13,10 +13,10 @@ const RequireAdmin = ({ children }) => {
         return <Loading></Loading>;
     }
 
-    if (!user || !admin) {
+    if (!user || admin) {
         return <Navigate to="/dashboard/myprofile" />;
     }
     return children;
 };
 
-export default RequireAdmin;
+export default RequireCustomer;

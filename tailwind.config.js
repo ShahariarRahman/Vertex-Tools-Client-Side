@@ -7,6 +7,7 @@ module.exports = {
   daisyui: {
     // themes: ["synthwave"],
     // themes: ["valentine"],
+    // themes: ["garden"],
     themes: ["garden"],
     // themes: ["halloween"],
     // themes: ["light"],

@@ -10,20 +10,24 @@ import { useQuery } from 'react-query';
 import { signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
+import useAdmin from '../../hooks/useAdmin';
 
 const Purchase = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
 
+    const [, , userDetail] = useAdmin(user);
+
     const { id } = useParams();
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     const url = `https://vertex-tools.herokuapp.com/tools/${id}`;
-    const { data: tool, isLoading, refetch } = useQuery('tool', () =>
+    const { data: tool, isLoading } = useQuery('tool', () =>
         fetch(url, {
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }
         }).then(res => {
@@ -81,15 +85,16 @@ const Purchase = () => {
                 if (data.insertedId) {
                     console.log("Order insertedId", data.insertedId);
                     toast.success("Order Added Successfully !");
-                    refetch();
+                    reset();
+                    navigate('/dashboard/myOrders');
                 }
                 else {
                     toast.error('Failed to add Order');
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     };
-
+    console.log(userDetail);
     return (
         <div className='flex justify-center items-center px-5 pt-5'>
             <div className="card w-full shadow-2xl">
@@ -103,30 +108,31 @@ const Purchase = () => {
                                 <h2>Your Information</h2>
                                 <div className="form-control w-full">
                                     <label className="label">
-                                        <span className="label-text text-xs">User Name</span>
+                                        <span className="label-text text-sm">User Name</span>
                                     </label>
                                     <input
-                                        className="input input-bordered rounded input-xs w-full "
+                                        className="input input-bordered rounded input-sm w-full "
                                         defaultValue={user?.displayName} disabled />
                                 </div>
 
                                 <div className="form-control w-full">
                                     <label className="label">
-                                        <span className="label-text text-xs">Email Address</span>
+                                        <span className="label-text text-sm">Email Address</span>
                                     </label>
                                     <input
-                                        className="input input-bordered rounded input-xs w-full"
+                                        className="input input-bordered rounded input-sm w-full"
                                         defaultValue={user?.email} disabled />
                                 </div>
 
 
 
                                 <div className="form-control w-full ">
-                                    <span className="label-text text-xs pt-2 pb-1">Address</span>
+                                    <span className="label-text text-sm pt-2 pb-1">Address</span>
                                     <input
                                         type="text"
-                                        placeholder="Your Address"
-                                        className="input input-bordered rounded input-xs w-full "
+                                        defaultValue={userDetail?.address}
+                                        placeholder="Please Give Your Address"
+                                        className="input input-bordered rounded input-sm w-full "
                                         {...register("address", {
                                             required: {
                                                 value: true,
@@ -146,20 +152,41 @@ const Purchase = () => {
 
 
                                 <div className="form-control w-full ">
-                                    <span className="label-text text-xs pb-1">Phone No.</span>
+                                    <span className="label-text text-sm pb-1">Phone No.</span>
                                     <input
                                         type="number"
-                                        placeholder="Your Phone Number"
-                                        className="input input-bordered w-full  rounded input-xs"
+                                        defaultValue={userDetail?.phone}
+                                        placeholder="Please Enter Your Phone Number"
+                                        className="input input-bordered w-full  rounded input-sm"
                                         {...register("phone", {
                                             required: {
                                                 value: true,
-                                                message: 'Your Phone Number is Required'
+                                                message: 'Phone Number is Required'
+                                            },
+                                            maxLength: {
+                                                value: 15,
+                                                message: "Phone Numbers Cannot Contain More Than 15 Digits"
+                                            },
+                                            minLength: {
+                                                value: 7,
+                                                message: "Phone Numbers Cannot Contain Less Than 15 Digits"
                                             }
                                         })}
                                     />
                                     <label className="label">
                                         {errors.phone?.type === 'required'
+                                            &&
+                                            <span className="label-text-alt text-red-500">
+                                                {errors.phone.message}
+                                            </span>
+                                        }
+                                        {errors.phone?.type === 'maxLength'
+                                            &&
+                                            <span className="label-text-alt text-red-500">
+                                                {errors.phone.message}
+                                            </span>
+                                        }
+                                        {errors.phone?.type === 'minLength'
                                             &&
                                             <span className="label-text-alt text-red-500">
                                                 {errors.phone.message}
@@ -190,18 +217,15 @@ const Purchase = () => {
                                         <div className="stat-value text-primary text-2xl">{tool.minimumOrderQuantity} Piece</div>
                                     </div>
                                 </div>
-
-
-
                                 <div className="form-control w-full">
                                     <label className="label">
-                                        <span className="label-text text-xs">Quantity</span>
+                                        <span className="label-text text-sm">Quantity</span>
                                     </label>
                                     <input
                                         type="number"
                                         placeholder="Quantity"
                                         defaultValue={tool.minimumOrderQuantity}
-                                        className="input input-bordered w-full  rounded input-xs"
+                                        className="input input-bordered w-full  rounded input-sm"
                                         {...register("quantity", {
                                             required: {
                                                 value: true,
@@ -212,7 +236,7 @@ const Purchase = () => {
                                                 message: `You can't order more than available quantity of products`
                                             },
                                             min: {
-                                                value: () => tool.minimumOrderQuantity,
+                                                value: tool.minimumOrderQuantity,
                                                 message: `You can't order less than minimum order quantity of products`
                                             },
                                         })}
@@ -244,7 +268,7 @@ const Purchase = () => {
                         <div className="flex justify-center">
                             <input
                                 disabled={errors.address || errors.phone || errors.quantity}
-                                className='btn btn-outline btn-sm w-32 text-primary hover:bg-primary hover:border-primary' type="submit" value='Purchase' />
+                                className='btn btn-outline btn-sm w-32 text-primary hover:bg-primary hover:border-primary rounded-2xl' type="submit" value='Purchase' />
                         </div>
                     </form>
                 </div>

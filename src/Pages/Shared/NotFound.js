@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import image from '../../assets/images/background.jpg';
 const NotFound = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
     return (
-        <div className="justify-center h-screen p-6 sm:p-16" style={{ background: `url(${image})` }}>
+        <div className="justify-center p-6 sm:p-16" >
             <div className="text-center pt-8">
                 <h1 className="text-9xl font-bold text-primary">404</h1>
                 <h1 className="text-6xl font-medium py-8">oops! Page not found</h1>

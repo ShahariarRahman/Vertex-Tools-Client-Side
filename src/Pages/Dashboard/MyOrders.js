@@ -20,7 +20,6 @@ const MyOrders = () => {
     }, []);
 
     const url = `https://vertex-tools.herokuapp.com/orders/${user?.email}`;
-    console.log(url);
     const { data: myOrders, isLoading, refetch } = useQuery(['myOrders', user?.email], () =>
         fetch(url, {
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }
@@ -37,23 +36,23 @@ const MyOrders = () => {
     if (isLoading || loading) {
         return <Loading></Loading>
     };
-
+    console.log(deleteOrderId);
     return (
         <div className='px-2 my-7 lg:mt-0'>
-            <h2 className='text-center font-bold text-primary text-xl py-3'>My Orders ({myOrders?.length})</h2>
+            <h2 className='text-center font-bold text-primary text-xl py-3 uppercase'>My Orders ({myOrders?.length})</h2>
             <div className="overflow-x-auto shadow-xl">
                 <table className="table w-full text-sm">
                     <thead>
                         <tr>
-                            <th className='py-1'></th>
-                            <th className='py-1 '>Product info</th>
-                            <th className='py-1 '>Status</th>
-                            <th className='py-1 '>payment</th>
-                            <th className='py-1 '>Cancel</th>
+                            <th className='py-2'></th>
+                            <th className='py-2 '>Product info</th>
+                            <th className='py-2 '>Status</th>
+                            <th className='py-2 '>payment</th>
+                            <th className='py-2 '>Cancel</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {myOrders.map((myOrder, index) => <MyOrder
+                        {myOrders?.map((myOrder, index) => <MyOrder
                             key={myOrder._id}
                             index={index}
                             myOrder={myOrder}

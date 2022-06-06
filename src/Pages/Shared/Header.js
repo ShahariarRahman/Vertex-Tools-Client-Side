@@ -1,12 +1,14 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import CustomLink from './CustomLink';
 import Loading from './Loading';
 
 const Header = ({ displayName }) => {
     const [user, loading] = useAuthState(auth);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (loading) {
@@ -15,11 +17,17 @@ const Header = ({ displayName }) => {
     }, [loading]);
 
     const nav = <>
-        <li className='mr-1'><Link to="/home">Home</Link></li>
-        <li className='mr-1'><Link to="/blogs">Blogs</Link></li>
-        <li className='mr-1'><Link to="/myPortfolio">My Portfolio</Link></li>
+        <li className='mr-1 mb-1 lg:mb-0' onClick={() => navigate("/home")}><CustomLink to="/home">Home</CustomLink></li>
+        <li className='mr-1 mb-1 lg:mb-0' onClick={() => navigate("/blogs")}><CustomLink to="/blogs">Blogs</CustomLink></li>
+        <li className='mr-1 mb-1 lg:mb-0' onClick={() => navigate("/myPortfolio")}><CustomLink to="/myPortfolio">My Portfolio</CustomLink></li>
 
-        {user && <li><Link to="/dashboard/myprofile">Dashboard</Link></li>}
+        {user && <li onClick={() => navigate("/dashboard/myprofile")}><CustomLink to="/dashboard/myprofile">Dashboard</CustomLink></li>}
+    </>;
+
+    const UserName = <>
+        <li className="hidden lg:flex">
+            <span className='hover:bg-primary'>{user?.displayName || displayName}</span>
+        </li>
     </>
 
     return (
@@ -38,7 +46,11 @@ const Header = ({ displayName }) => {
                                 >Logout
                                 </button>
                                 :
-                                <li><Link to="/login">Login/Register </Link></li>}
+                                <li onClick={() => navigate("/login")} >
+                                    <CustomLink to="/login">
+                                        Login/Register
+                                    </CustomLink>
+                                </li>}
                         </ul>
                     </div>
                     <div className="btn btn-ghost normal-case text-xl cursor-default hover:bg-primary hover:transition-none">Vertex Tools</div>
@@ -55,30 +67,42 @@ const Header = ({ displayName }) => {
                             {user ?
                                 <>
                                     {user.photoURL ?
-                                        <div className="avatar flex items-center mr-1">
+                                        <div
+                                            className="avatar flex items-center mr-5 lg:mr-1 cursor-pointer"
+                                            onClick={() => navigate('/dashboard/myprofile')}
+                                        >
                                             <div className="w-8 h-8 rounded-full border-2 border-secondary">
                                                 <img src={user.photoURL} alt="Tailwind-CSS-Avatar-component" />
                                             </div>
+                                            {UserName}
                                         </div>
                                         :
-                                        <div className="avatar flex items-center mr-1">
+                                        <div
+                                            className="avatar flex items-center mr-5 lg:mr-1 cursor-pointer"
+                                            onClick={() => navigate('/dashboard/myprofile')}
+                                        >
                                             <div className="w-8 h-8 rounded-full border-2 border-accent bg-secondary">
                                                 <div className='text-primary text-center font-semibold mt-[2px] uppercase'>{(user.displayName || displayName).slice(0, 2)}</div>
                                             </div>
+                                            {UserName}
                                         </div>
                                     }
-                                    <li className="hidden lg:flex">
-                                        <span className='hover:bg-primary cursor-default hover:text-black text-gray-900'>{user.displayName || displayName}</span>
-                                    </li>
-                                    <li className="hidden lg:flex">
+                                    <li
+                                        className="hidden lg:flex"
+                                        onClick={() => signOut(auth)}
+                                    >
                                         <button className='mr-2'
-                                            onClick={() => signOut(auth)}
                                         >Logout
                                         </button>
                                     </li>
                                 </>
                                 :
-                                <li className="hidden lg:flex"><Link to="/login">Login/Register </Link></li>}
+                                <li
+                                    className="hidden lg:flex"
+                                    onClick={() => navigate("/login")}
+                                >
+                                    <Link to="/login" >Login/Register </Link>
+                                </li>}
                         </ul>
                     </div>
                 </div>

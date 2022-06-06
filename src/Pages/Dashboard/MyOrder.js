@@ -26,53 +26,31 @@ const MyOrder = ({ myOrder, index, setDeleteOrderdId }) => {
                     }
                 </div>
                 <div> Delivery:
-                    {myOrder.status
+                    {myOrder.shipped
                         ?
-                        <>
-                            {myOrder.status === "Pending" && <span className='text-red-500'> Pending</span>}
-                            {myOrder.status === "shipped" && <span className='text-green-600'> Shipped</span>}
-                        </>
+                        <span className='text-green-600'> Shipped</span>
                         :
-                        <span className='text-red-500'> pay first</span>
+                        <span className='text-red-500'> Pending</span>
                     }
                 </div>
             </td>
 
             <td className='py-1'>
-                {myOrder.paid ?
-                    <button disabled
-                        className="btn btn-xs 2xl:btn-sm capitalize bg-primary border-none"
-                        onClick={() => navigate(`/dashboard/payment/${myOrder._id}`)}
-                    >Pay Now
-                    </button>
-                    :
-                    <button
-                        className="btn btn-xs 2xl:btn-sm capitalize bg-primary border-none"
-                        onClick={() => navigate(`/dashboard/payment/${myOrder._id}`)}
-                    >Pay Now
-                    </button>
-                }
-
-
+                <button
+                    disabled={myOrder.paid || myOrder.shipped}
+                    className="btn btn-xs 2xl:btn-sm capitalize bg-primary border-none"
+                    onClick={() => navigate(`/dashboard/payment/${myOrder._id}`)}
+                >Pay Now
+                </button>
             </td>
             <td className='py-1'>
-                {myOrder.paid ?
-                    <button
-                        disabled
-                        onClick={() => setDeleteOrderdId(myOrder._id)}
-                        htmlFor="CancelOrderModal"
-                        className="btn btn-xs 2xl:btn-sm capitalize bg-red-500 hover:bg-red-600 border-none"
-                    >Cancel
-                    </button>
-                    :
-                    <label
-                        onClick={() => setDeleteOrderdId(myOrder._id)}
-                        htmlFor="CancelOrderModal"
-                        className="btn btn-xs 2xl:btn-sm capitalize bg-red-500 hover:bg-red-600 border-none"
-                    >Cancel
-                    </label>
-                }
-
+                <label
+                    onClick={() => setDeleteOrderdId(myOrder._id)}
+                    disabled={myOrder.paid || myOrder.shipped}
+                    htmlFor="CancelOrderModal"
+                    className="btn btn-xs 2xl:btn-sm capitalize bg-red-500 hover:bg-red-600 border-none"
+                >Cancel
+                </label>
             </td>
 
         </tr>

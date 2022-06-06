@@ -24,13 +24,13 @@ const BusinessSummaries = () => {
         {
             business_id: 4,
             achivement_name: "Tools Sold",
-            achivement_number: 12000,
+            achivement_number: 3335,
             fabIconName: faTools
         },
         {
             business_id: 5,
             achivement_name: "Reviews",
-            achivement_number: 120000,
+            achivement_number: "1727",
             fabIconName: faSmile
         }
     ];

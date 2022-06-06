@@ -1,9 +1,22 @@
 import { faDashboard } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Outlet, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
+import CustomLink from '../Shared/CustomLink';
+import Loading from '../Shared/Loading';
 
 const Dashboard = () => {
+    const [user, loading] = useAuthState(auth);
+    const [admin, adminLoading] = useAdmin(user);
+
+    const navigate = useNavigate();
+
+    if (adminLoading || loading) {
+        return <Loading></Loading>
+    };
     return (
         <div className="drawer drawer-mobile">
             <input id="user-dashboard" type="checkbox" className="drawer-toggle" />
@@ -17,16 +30,37 @@ const Dashboard = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="user-dashboard" className="drawer-overlay"></label>
-                <ul className="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
-                    <li>
-                        <Link to="myprofile" className='mb-1 text-sm'>My Profile</Link>
-                        <Link to="manageOrders" className='mb-1 text-sm'>Manage Orders</Link>
-                        <Link to="addProduct" className='mb-1 text-sm'>Add Product</Link>
-                        <Link to="makeAdmin" className='mb-1 text-sm'>Make Admin</Link>
-                        <Link to="manageProducts" className='mb-1 text-sm'>Manage Products</Link>
-                        <Link to="myOrders" className='mb-1 text-sm'>My Orders</Link>
-                        <Link to="addReview" className='mb-1 text-sm'>Add Review</Link>
+                <ul className="menu p-1 overflow-y-auto bg-base-100 text-base-content text-center">
+                    <li className='mb-2' onClick={() => navigate("myprofile")}>
+                        <CustomLink to="myprofile" className='text-sm'>My Profile</CustomLink>
                     </li>
+
+                    {admin ?
+                        <>
+                            <li className='mb-2' onClick={() => navigate("addProduct")}>
+                                <CustomLink to="addProduct" className='text-sm'>Add Product</CustomLink>
+                            </li>
+                            <li className='mb-2' onClick={() => navigate("makeAdmin")}>
+                                <CustomLink to="makeAdmin" className='text-sm'>Make Admin</CustomLink>
+                            </li>
+                            <li className='mb-2' onClick={() => navigate("manageOrders")}>
+                                <CustomLink to="manageOrders" className='text-sm'>Manage Orders</CustomLink>
+                            </li>
+                            <li className='mb-2' onClick={() => navigate("manageProducts")}>
+                                <CustomLink to="manageProducts" className='text-sm'>Manage Products</CustomLink>
+                            </li>
+                        </>
+                        :
+                        <>
+                            <li className='mb-2' onClick={() => navigate("myOrders")}>
+                                <CustomLink to="myOrders" className='text-sm'>My Orders</CustomLink>
+                            </li>
+                            <li className='mb-2' onClick={() => navigate("addReview")}>
+                                <CustomLink to="addReview" className='text-sm'>Add Review</CustomLink>
+                            </li>
+                        </>
+                    }
+
                 </ul>
 
             </div>

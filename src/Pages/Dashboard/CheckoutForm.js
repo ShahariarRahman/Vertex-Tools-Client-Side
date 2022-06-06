@@ -71,7 +71,7 @@ const CheckoutForm = ({ order }) => {
             setCardError('');
             setTransactionId(paymentIntent.id);
             console.log(paymentIntent);
-            setSuccess('Congrats! Your payment is completed');
+            setSuccess('Congrats! Your payment is completed !');
 
             // store payment on database
             const payment = {
@@ -91,9 +91,7 @@ const CheckoutForm = ({ order }) => {
                     setProcessing(false);
                     console.log(data);
                 });
-
         }
-
     }
 
     return (
@@ -103,7 +101,7 @@ const CheckoutForm = ({ order }) => {
                     options={{
                         style: {
                             base: {
-                                fontSize: '12px',
+                                fontSize: '20px',
                                 color: '#424770',
                                 '::placeholder': {
                                     color: '#aab7c4',
@@ -115,22 +113,26 @@ const CheckoutForm = ({ order }) => {
                         },
                     }}
                 />
-                <button
-                    className='btn btn-success btn-sm'
-                    type="submit"
-                    disabled={!stripe || !clientSecret}>
-                    Pay
-                </button>
+                <div className='flex justify-center'>
+                    <button
+                        className='btn capitalize btn-primary btn-sm mt-10'
+                        type="submit"
+                        disabled={!stripe || !clientSecret}>
+                        Pay Now
+                    </button>
+                </div>
             </form>
             {cardError &&
                 <p className='text-red-500'>{cardError}</p>
             }
             {success &&
-                <div className='text-green-500' >
+                <div className='text-green-500 mt-2 text-center' >
                     <p>{success}</p>
                     <p>
-                        Your transaction Id:
-                        <span className='text-orange-500 font-bold'> {transactionId}</span>
+                        Your transaction Id: <br />
+                        <span className='text-orange-500 font-bold'>
+                            {transactionId}
+                        </span>
                     </p>
                 </div>
             }

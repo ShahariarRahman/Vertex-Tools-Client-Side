@@ -1,4 +1,5 @@
 import React from 'react';
+import PayMethods from '../Dashboard/PayMethods';
 import Analysis from './Analysis';
 import Banner from './Banner';
 import BusinessSummaries from './BusinessSummaries';
@@ -13,7 +14,7 @@ const Home = () => {
             <BusinessSummaries></BusinessSummaries>
             <Reviews></Reviews>
             <Analysis></Analysis>
-            <h1 className='text-5xl text-primary my-52 text-center'>Empty Extra Section 2</h1>
+            <PayMethods></PayMethods>
         </div>
     );
 };

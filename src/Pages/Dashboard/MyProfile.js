@@ -1,13 +1,14 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTools } from '@fortawesome/free-solid-svg-icons';
 
 const MyProfile = () => {
-    const { register, formState: { errors, isSubmitting, isDirty, isValid }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const [user, loading] = useAuthState(auth);
 
@@ -20,41 +21,77 @@ const MyProfile = () => {
     };
 
     const onSubmit = data => {
-        console.log(data);
+        const UpdateInfo = {
+            address: data.address,
+            education: data.education,
+            linkedIn: data.linkedIn,
+            phone: data.phone
+        }
+        const url = `https://vertex-tools.herokuapp.com/user/${user?.email}`;
+        fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(UpdateInfo)
+        })
+            .then(response => {
+                if (response.status === 403 || response.status === 401) {
+                    signOut(auth);
+                    toast.error('Invalid Access Sign In Again!');
+                    Navigate('/login');
+                }
+                return response.json();
+            })
+            .then(updated => {
+                console.log(updated);
+                if (updated.matchedCount > 0) {
+                    if (updated.modifiedCount > 0) {
+                        toast.success('Update Profile Successfull');
+                    }
+                    else {
+                        toast.warn('Everything up to date');
+                    }
+                    reset();
+                }
+                else {
+                    toast.error('Failed to Update');
+                }
+            });
     };
     return (
-        <div className='flex justify-center items-center px-5 pt-5'>
-            <div className="card w-full shadow-2xl">
-                <div className="card-body">
-                    <h2 className="text-center text-2xl font-bold text-primary">Update Your Profile</h2>
-
+        <div className='px-2 my-7 lg:mt-0'>
+            <h2 className="text-center font-bold text-primary text-xl pt-5 uppercase">Update Your Profile</h2>
+            <div className="overflow-x-auto shadow-xl rounded-3xl">
+                <div className="card-body px-4 pb-4 pt-3">
                     <form onSubmit={handleSubmit(onSubmit)} className="bg-base-100">
                         <div className="form-control w-full ">
                             <label className="label">
-                                <span className="label-text text-xs">User Name</span>
+                                <span className="label-text text-sm">User Name</span>
                             </label>
                             <input
-                                className="input input-bordered rounded input-xs w-full "
+                                className="input input-bordered rounded input-sm w-full "
                                 defaultValue={user?.displayName} disabled />
                         </div>
 
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text text-xs">Email Address</span>
+                                <span className="label-text text-sm">Email Address</span>
                             </label>
                             <input
-                                className="input input-bordered rounded input-xs w-full"
+                                className="input input-bordered rounded input-sm w-full"
                                 defaultValue={user?.email} disabled />
                         </div>
 
 
 
                         <div className="form-control w-full ">
-                            <span className="label-text text-xs pt-2 pb-1">Address</span>
+                            <span className="label-text text-sm pt-2 pb-1">Address</span>
                             <input
                                 type="text"
                                 placeholder="Your Address"
-                                className="input input-bordered rounded input-xs w-full "
+                                className="input input-bordered rounded input-sm w-full "
                                 {...register("address", {
                                     required: {
                                         value: true,
@@ -62,7 +99,7 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label className="label">
+                            <label className="label p-1">
                                 {errors.address?.type === 'required'
                                     &&
                                     <span className="label-text-alt text-red-500">
@@ -74,11 +111,11 @@ const MyProfile = () => {
 
 
                         <div className="form-control w-full ">
-                            <span className="label-text text-xs pb-1">Phone No.</span>
+                            <span className="label-text text-sm pb-1">Phone No.</span>
                             <input
                                 type="number"
                                 placeholder="Your Phone Number"
-                                className="input input-bordered w-full  rounded input-xs"
+                                className="input input-bordered w-full  rounded input-sm"
                                 {...register("phone", {
                                     required: {
                                         value: true,
@@ -86,7 +123,7 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label className="label">
+                            <label className="label p-1">
                                 {errors.phone?.type === 'required'
                                     &&
                                     <span className="label-text-alt text-red-500">
@@ -97,11 +134,11 @@ const MyProfile = () => {
                         </div>
 
                         <div className="form-control w-full ">
-                            <span className="label-text text-xs pb-1">Educational Qualification</span>
+                            <span className="label-text text-sm pb-1">Educational Qualification</span>
                             <input
                                 type="text"
                                 placeholder="Educational Qualification"
-                                className="input input-bordered w-full  rounded input-xs"
+                                className="input input-bordered w-full  rounded input-sm"
                                 {...register("education", {
                                     required: {
                                         value: true,
@@ -109,7 +146,7 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label className="label">
+                            <label className="label p-1">
                                 {errors.education?.type === 'required'
                                     &&
                                     <span className="label-text-alt text-red-500">
@@ -121,11 +158,11 @@ const MyProfile = () => {
 
 
                         <div className="form-control w-full ">
-                            <span className="label-text text-xs pb-1">LinkedIn Profile Link</span>
+                            <span className="label-text text-sm pb-1">LinkedIn Profile Link</span>
                             <input
                                 type="text"
                                 placeholder="Your LinkedIn Profile Link"
-                                className="input input-bordered w-full  rounded input-xs"
+                                className="input input-bordered w-full  rounded input-sm"
                                 {...register("linkedIn", {
                                     required: {
                                         value: true,
@@ -133,7 +170,7 @@ const MyProfile = () => {
                                     }
                                 })}
                             />
-                            <label className="label">
+                            <label className="label p-1">
                                 {errors.linkedIn?.type === 'required'
                                     &&
                                     <span className="label-text-alt text-red-500">
@@ -142,10 +179,10 @@ const MyProfile = () => {
                                 }
                             </label>
                         </div>
-                        <div className="flex justify-center">
+                        <div className="flex justify-center pt-3">
                             <input
                                 disabled={errors.address || errors.phone || errors.education || errors.linkedIn}
-                                className='btn btn-outline btn-sm w-32 text-primary hover:bg-primary hover:border-primary' type="submit" value='Update' />
+                                className='btn btn-outline btn-sm w-32 text-primary hover:bg-primary hover:border-primary rounded-2xl' type="submit" value='Update' />
                         </div>
                     </form>
                 </div>

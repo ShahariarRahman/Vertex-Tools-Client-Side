@@ -68,39 +68,39 @@ const AddReview = () => {
     };
 
     return (
-        <div className='flex justify-center items-center px-5 pt-5'>
-            <div className="card w-full shadow-2xl">
-                <div className="card-body">
-                    <h2 className="text-center text-2xl font-bold text-primary">Add a Review</h2>
+        <div className='px-2 my-7 lg:mt-0'>
+            <h2 className="text-center font-bold text-primary text-2xl pt-5">Add a Review</h2>
+            <div className="overflow-x-auto shadow-xl rounded-3xl">
+                <div className="card-body px-4 pb-4 pt-3">
 
                     <form onSubmit={handleSubmit(onSubmit)} className="bg-base-100">
 
                         <div className="form-control w-full ">
                             <label className="label">
-                                <span className="label-text text-xs">User Name</span>
+                                <span className="label-text text-sm">User Name</span>
                             </label>
                             <input
-                                className="input input-bordered rounded input-xs w-full "
+                                className="input input-bordered rounded input-sm w-full "
                                 defaultValue={user?.displayName} disabled />
                         </div>
 
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text text-xs">Email Address</span>
+                                <span className="label-text text-sm">Email Address</span>
                             </label>
                             <input
-                                className="input input-bordered rounded input-xs w-full"
+                                className="input input-bordered rounded input-sm w-full"
                                 defaultValue={user?.email} disabled />
                         </div>
 
 
 
                         <div className="form-control w-full ">
-                            <span className="label-text text-xs pt-2 pb-1">Ratings</span>
+                            <span className="label-text text-sm pt-2 pb-1">Ratings</span>
                             <input
                                 type="number"
                                 placeholder="Please Give Ratings in 1 to 5"
-                                className="input input-bordered rounded input-xs w-full "
+                                className="input input-bordered rounded input-sm w-full "
                                 {...register("rating", {
                                     required: {
                                         value: true,
@@ -140,10 +140,10 @@ const AddReview = () => {
 
 
                         <div className="form-control w-full ">
-                            <span className="label-text text-xs pb-1">Description</span>
+                            <span className="label-text text-sm pb-1">Description</span>
                             <textarea
                                 placeholder="Please Description in Maximum 250 Letters"
-                                className="input input-bordered w-full h-32 rounded input-xs"
+                                className="input input-bordered w-full h-32 rounded input-sm"
                                 {...register("description", {
                                     required: {
                                         value: true,
@@ -178,7 +178,7 @@ const AddReview = () => {
                         <div className="flex justify-center">
                             <input
                                 disabled={errors.rating || errors.description}
-                                className='btn btn-outline btn-sm w-32 text-primary hover:bg-primary hover:border-primary' type="submit" value='Add Review' />
+                                className='btn btn-outline btn-sm w-32 text-primary hover:bg-primary hover:border-primary rounded-2xl' type="submit" value='Add Review' />
                         </div>
                     </form>
                 </div>
