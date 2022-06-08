@@ -1,7 +1,7 @@
 # Vertex Tools
 
-### Visit Website: [Client-Side](https://vertex-tools.web.app/) , [Server Side](https://vertex-tools.herokuapp.com/)
-### Source Code: [Server Side](https://github.com/ShahariarRahman/Vertex-Tools-Server-Side)
+### Visit Website: [Client-Side](https://vertex-tools.web.app/) , [Server-Side](https://vertex-tools.herokuapp.com/)
+### Source Code: [Server-Side](https://github.com/ShahariarRahman/Vertex-Tools-Server-Side)
 
 ### Short Descriptions:
 This is a project for a company that manufactures tools such as hammers, drill machines, screwdrivers, wrenches, pliers, measuring tapes, chisels, soldering irons, and more.
