@@ -16,8 +16,7 @@ This is a project for a company that manufactures tools such as hammers, drill m
 
 * Homage: Homepage Contain Introduction of website, Six recently added Tools item, Business Summary, User Reviews etc.
 * Login/Registration: Login/Registration page user can log/register in using Google or Email which secured by JSON Web Token.
-  
-* Dashbord:
+* Dashbord: My Profile, Manage Order, Add Product, Make Admin, Manage Products, My Order, Add Review.
 * My Profile: Normal User/Admin can upadte his/her information.
 * Manage Order: Admin can update information of order.
 * Add Product: Admin can add product through this page.
