@@ -12,9 +12,11 @@ This is a project for a company that manufactures tools such as hammers, drill m
 * Also, the admin can manage paid ordered products. (Admin: vendor@vendor.cominformation, Password: admin123).
 * The customer has access to add a review, order a product and pay for the product.
 
-### All Pages:
+### Pages:
+
 * Homage: Homepage Contain Introduction of website, Six recently added Tools item, Business Summary, User Reviews etc.
 * Login/Registration: Login/Registration page user can log/register in using Google or Email which secured by JSON Web Token.
+* 
 * Dashbord:
 * My Profile: Normal User/Admin can upadte his/her information.
 * Manage Order: Admin can update information of order.
