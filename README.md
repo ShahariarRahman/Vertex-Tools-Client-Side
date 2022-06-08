@@ -1,4 +1,4 @@
-# Project : Vertex Tools
+# Vertex Tools
 
 ### Live Server Link1: [Client Side Firebase Hosting](https://vertex-tools.web.app/)
 ### Live Server Link2: [Server Side Heroku Hosting](https://vertex-tools.herokuapp.com/)
