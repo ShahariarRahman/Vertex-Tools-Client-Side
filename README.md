@@ -29,3 +29,4 @@ This is a project for a company that manufactures tools such as hammers, drill m
 ### Technologies:
 * Client Side: React, React Router, Date-fns, React-hook-form, React-query, Firebase, React Firebase Hooks, Tailwind, Font Awesome, React Toastify, React-loader-spinner, and more.
 * Server Side: MongoDB, Express.
+
