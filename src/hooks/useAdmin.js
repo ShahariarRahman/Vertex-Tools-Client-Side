@@ -8,7 +8,7 @@ const useAdmin = (user) => {
     useEffect(() => {
         const email = user?.email;
         if (email) {
-            const url = `https://vertex-tools.herokuapp.com/admin/${email}`;
+            const url = `https://vertex-tools-api.onrender.com/admin/${email}`;
             fetch(url, {
                 headers: {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`

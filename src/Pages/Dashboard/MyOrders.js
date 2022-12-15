@@ -19,7 +19,7 @@ const MyOrders = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const url = `https://vertex-tools.herokuapp.com/orders/${user?.email}`;
+    const url = `https://vertex-tools-api.onrender.com/orders/${user?.email}`;
     const { data: myOrders, isLoading, refetch } = useQuery(['myOrders', user?.email], () =>
         fetch(url, {
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }

@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
     const { _id, price, quantity, email, name } = order;
 
     useEffect(() => {
-        fetch("https://vertex-tools.herokuapp.com/create-payment-intent", {
+        fetch("https://vertex-tools-api.onrender.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -78,7 +78,7 @@ const CheckoutForm = ({ order }) => {
                 order: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`https://vertex-tools.herokuapp.com/orders/${_id}`, {
+            fetch(`https://vertex-tools-api.onrender.com/orders/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     "content-type": "application/json",

@@ -10,7 +10,7 @@ const MakeAdminModal = ({ user, refetch }) => {
 
     const handleMakeAdmin = () => {
         console.log(name, email);
-        const url = `https://vertex-tools.herokuapp.com/admin/${email}`;
+        const url = `https://vertex-tools-api.onrender.com/admin/${email}`;
         fetch(url, {
             method: 'PATCH',
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }

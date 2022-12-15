@@ -9,7 +9,7 @@ const DeleteToolModal = ({ deleteToolId, refetch }) => {
     const navigate = useNavigate();
 
     const handleToolDelete = () => {
-        const url = `https://vertex-tools.herokuapp.com/tools?id=${deleteToolId}`;
+        const url = `https://vertex-tools-api.onrender.com/tools?id=${deleteToolId}`;
         fetch(url, {
             method: 'DELETE',
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }

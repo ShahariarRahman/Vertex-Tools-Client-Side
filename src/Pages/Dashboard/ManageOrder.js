@@ -10,7 +10,7 @@ const ManageOrder = ({ order, refetch, index }) => {
 
     const handleShippingOrder = () => {
         console.log(name, email);
-        const url = `https://vertex-tools.herokuapp.com/order/${_id}`;
+        const url = `https://vertex-tools-api.onrender.com/order/${_id}`;
         fetch(url, {
             method: 'PATCH',
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }

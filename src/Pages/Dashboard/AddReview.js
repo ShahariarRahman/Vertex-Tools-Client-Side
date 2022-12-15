@@ -36,7 +36,7 @@ const AddReview = () => {
             time
         };
 
-        const url = 'https://vertex-tools.herokuapp.com/reviews';
+        const url = 'https://vertex-tools-api.onrender.com/reviews';
         fetch(url, {
             method: 'POST',
             headers: {

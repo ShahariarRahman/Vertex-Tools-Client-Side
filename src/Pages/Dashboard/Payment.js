@@ -11,7 +11,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PROMISE);
 const Payment = () => {
     const { id } = useParams();
 
-    const url = `https://vertex-tools.herokuapp.com/order/${id}`;
+    const url = `https://vertex-tools-api.onrender.com/order/${id}`;
     const { data: order, isLoading } = useQuery(['order', id], () =>
         fetch(url, {
             headers: {

@@ -27,7 +27,7 @@ const MyProfile = () => {
             linkedIn: data.linkedIn,
             phone: data.phone
         }
-        const url = `https://vertex-tools.herokuapp.com/user/${user?.email}`;
+        const url = `https://vertex-tools-api.onrender.com/user/${user?.email}`;
         fetch(url, {
             method: 'PATCH',
             headers: {

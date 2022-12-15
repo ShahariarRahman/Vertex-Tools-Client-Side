@@ -11,7 +11,7 @@ const useToken = (user) => {
             name,
         }
         if (email) {
-            const url = `https://vertex-tools.herokuapp.com/user/${email}`;
+            const url = `https://vertex-tools-api.onrender.com/user/${email}`;
             fetch(url, {
                 method: 'PUT',
                 headers: { 'content-type': 'application/json' },

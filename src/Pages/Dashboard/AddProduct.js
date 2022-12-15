@@ -49,7 +49,7 @@ const AddProduct = () => {
                         time
                     };
                     // send to your database
-                    fetch('https://vertex-tools.herokuapp.com/tools', {
+                    fetch('https://vertex-tools-api.onrender.com/tools', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

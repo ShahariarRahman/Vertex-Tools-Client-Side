@@ -9,7 +9,7 @@ const CancelOrderModal = ({ deleteOrderId, refetch }) => {
 
     const handleToolDelete = () => {
 
-        const url = `https://vertex-tools.herokuapp.com/orders?id=${deleteOrderId}`;
+        const url = `https://vertex-tools-api.onrender.com/orders?id=${deleteOrderId}`;
         console.log(url);
         fetch(url, {
             method: 'DELETE',

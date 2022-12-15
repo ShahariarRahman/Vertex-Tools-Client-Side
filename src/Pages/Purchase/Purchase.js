@@ -26,7 +26,7 @@ const Purchase = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const url = `https://vertex-tools.herokuapp.com/tools/${id}`;
+    const url = `https://vertex-tools-api.onrender.com/tools/${id}`;
     const { data: tool, isLoading } = useQuery('tool', () =>
         fetch(url, {
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }
@@ -64,7 +64,7 @@ const Purchase = () => {
             time,
         };
 
-        const url = `https://vertex-tools.herokuapp.com/orders/${id}`;
+        const url = `https://vertex-tools-api.onrender.com/orders/${id}`;
         fetch(url, {
             method: 'POST',
             headers: {

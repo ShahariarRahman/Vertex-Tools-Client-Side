@@ -14,7 +14,7 @@ const ManageOrders = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const url = 'https://vertex-tools.herokuapp.com/orders';
+    const url = 'https://vertex-tools-api.onrender.com/orders';
     const { data: orders, isLoading, error, refetch } = useQuery('orders', () =>
         fetch(url, {
             headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` }

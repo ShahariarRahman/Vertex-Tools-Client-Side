@@ -5,7 +5,7 @@ import Review from './Review';
 
 const Reviews = () => {
     const { data: reviews, isLoading } = useQuery('reviews', () =>
-        fetch('https://vertex-tools.herokuapp.com/reviews').then(res =>
+        fetch('https://vertex-tools-api.onrender.com/reviews').then(res =>
             res.json()
         )
     );
