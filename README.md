@@ -9,7 +9,7 @@ This is a project for a company that manufactures tools such as hammers, drill m
 ### Features:
 * Admin, Customer authorization implemented. Users can access the homepage and can update their information.
 * Admin has access to add, delete products and make another user as admin.
-* Also, the admin can manage paid ordered products. (Admin: vendor@vendor.cominformation, Password: admin123).
+* Also, the admin can manage paid ordered products. (Admin: vendor@vendor.com, Password: admin123).
 * The customer has access to add a review, order a product and pay for the product.
 
 ### Pages:
